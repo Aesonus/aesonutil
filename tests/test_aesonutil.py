@@ -1,4 +1,4 @@
-from aesonutil import MapTo
+from aesonutil import MapTo, chunked
 
 
 def test_MapTo_call_calls_each_given_callable():
@@ -7,6 +7,7 @@ def test_MapTo_call_calls_each_given_callable():
         called1_with = None
         called2 = False
         called2_with = None
+
         @classmethod
         def call1(cls, arg):
             cls.called1 = True
@@ -25,3 +26,13 @@ def test_MapTo_call_calls_each_given_callable():
     assert CallFixture.called1_with == 'expected_arg'
     assert CallFixture.called2 == True
     assert CallFixture.called2_with == 'expected_arg_after_one'
+
+
+def test_chunked_returns_list_split_into_chunks():
+    expected = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8]
+    ]
+    actual = chunked([1, 2, 3, 4, 5, 6, 7, 8], 3)
+    assert actual == expected

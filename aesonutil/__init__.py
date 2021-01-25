@@ -5,6 +5,9 @@ from typing import Any, Callable, List, Optional, Sequence, Union
 name="aesonutil/aesonutil"
 __version__ = "1.0.0"
 
+def chunked(sequence: Sequence, chunk_size: int) -> List[Sequence]:
+    return [sequence[i: i + chunk_size] for i in range(0, len(sequence), chunk_size)]
+
 class MapTo:
     """
     Builds a callable class that attaches decorators to each other to return something.
