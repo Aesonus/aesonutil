@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="aesonutil",
-    version="0.1.1",
+    version="0.1.2",
     author="Aesonus",
     author_email="corylcomposinger@gmail.com",
     description="A package that contains common reuseable functions",

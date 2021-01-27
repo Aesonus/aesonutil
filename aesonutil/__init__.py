@@ -3,7 +3,7 @@ from typing import Any, Callable, List, Optional, Sequence, Union
 
 
 name="aesonutil/aesonutil"
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 
 def chunked(sequence: Sequence, chunk_size: int) -> List[Sequence]:
     return [sequence[i: i + chunk_size] for i in range(0, len(sequence), chunk_size)]
