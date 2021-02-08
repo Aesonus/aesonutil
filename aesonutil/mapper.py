@@ -2,6 +2,11 @@ import re
 from typing import Callable, List, Optional, Sequence
 
 
+def apply_to_each(func):
+    def decorated(sequence: Sequence) -> Callable[[Sequence[str]], List]:
+        return [func(item) for item in sequence]
+    return decorated
+
 def split_by(separator: str) -> Callable[[str], List]:
     def func(snake_case_string):
         return snake_case_string.split(separator)
@@ -16,8 +21,9 @@ def concat(separator: Optional[str] = None) -> Callable[[Sequence[str]], str]:
 
 
 def capitalize_each() -> Callable[[Sequence[str]], List[str]]:
-    def func(parts: Sequence[str]):
-        return [part.capitalize() for part in parts]
+    @apply_to_each
+    def func(part: str) -> Callable[[Sequence[str]], List]:
+        return part.capitalize()
     return func
 
 
