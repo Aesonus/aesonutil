@@ -41,6 +41,8 @@ def test_apply_to_each():
     ]
 
     def decorated_fnc(item):
+        if item != False:
+            return False
         return True
 
     actual = apply_to_each(decorated_fnc)(called_items)
